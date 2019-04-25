@@ -1,0 +1,42 @@
+(gdb) info stack
+#0  0x00007ffff7e78b80 in puts () from /lib/x86_64-linux-gnu/libc.so.6
+#1  0x0000000000401308 in main ()
+(gdb) info frame
+Stack level 0, frame at 0x7fffffffebc0:
+ rip = 0x7ffff7e78b80 in puts; saved rip = 0x401308
+ called by frame at 0x7fffffffec20
+ Arglist at 0x7fffffffebb0, args: 
+ Locals at 0x7fffffffebb0, Previous frame's sp is 0x7fffffffebc0
+ Saved registers:
+  rip at 0x7fffffffebb8
+(gdb) printf "%p", __libc_start_main
+0x7ffff7e2afb0(gdb) printf "%p", 7ffff7e2b09b-__libc_start_main
+Invalid number "7ffff7e2b09b".
+(gdb) printf "%p", 0x7ffff7e2b09b-__libc_start_main
+Argument to arithmetic operation not a number or boolean.
+(gdb) printf "%p", *0x7ffff7e2b09b - __libc_start_main
+Argument to arithmetic operation not a number or boolean.
+(gdb) printf "%p", __libc_start_main
+0x7ffff7e2afb0(gdb) 
+(gdb) printf "%x", 0x7ffff7e2afb0 - 0x7ffff7e2b09b
+ffffff15(gdb) printf "%x\n", (0x7ffff7e2afb0 - 0x7ffff7e2b09b)
+ffffff15
+(gdb) printf "%x\n", (-0x7ffff7e2afb0 + 0x7ffff7e2b09b)
+eb
+(gdb) printf "%d\n", (-0x7ffff7e2afb0 + 0x7ffff7e2b09b)
+235
+(gdb) printf "%d\n", (-0x7ffff7e2afb0 + 0x7ffff7e2b09b + 0x043980)
+277099
+(gdb) printf "%d\n", (-0x7ffff7e2afb0 + 0x7ffff7e2b09b + 0x043980)
+277099
+(gdb) printf "%d\n", (0x7ffff7e2afb0 + 0x043980)
+-135861968
+(gdb) printf "%x\n", (0x7ffff7e2afb0 + 0x043980)
+f7e6e930
+(gdb) printf "%ux\n", (0x7ffff7e2afb0 + 0x043980)
+4159105328x
+(gdb) printf "%p\n", (0x7ffff7e2afb0 + 0x043980)
+0x7ffff7e6e930
+(gdb) disass 0x7ffff7e6e930
+No function contains specified address.
+(gdb) disass 0x7ffff7e2afb0
